@@ -1,0 +1,38 @@
+static int hourglassSum(int[][] arr) {
+        int k=0,l=2,m=0,n=2;                //k: first element in row 
+                                            //l: last element in row
+                                            //m: first element in column
+                                            //n: last element in column
+        int max=-99999,midcol,size,i,j,y=0,z,sum=0;
+        size=arr.length;
+        
+        for(i=0;(i<size-2)&&(y<size-2);i++){
+            for(j=k;j<=l;j++){
+                for(z=m;z<=n;z++){
+                    midcol=(k+l)/2;    
+                    if(j!=midcol||(z==((m+n)/2)&&j==midcol))
+                    {
+                        sum+=arr[j][z];
+                    }                      
+                }
+            }
+        
+            if(i!=size-3){
+                m++;
+                n++;
+            }
+            if(i==size-3)
+            {
+                m=0;
+                n=2;
+                k++;
+                l++;            
+                i=0;            //Next line to start with 0th column 
+                y++;            //Count for row
+            }
+            if(max<sum)
+                max=sum; 
+            sum=0;
+        }
+         return (max);
+    }
